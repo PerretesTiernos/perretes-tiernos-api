@@ -1,0 +1,1363 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Perretes Tiernos API",
+    "description": "API REST modular para plataforma digital de bienestar animal: Identidad, Organizaciones y Protectoras, Red Social, Adopciones, Matching, Marketplace, Reservas y Pagos.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Root"],
+        "summary": "API Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": { "type": "string" },
+                  "type": "object",
+                  "title": "Response Root  Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Health Check",
+        "description": "Verifica el estado del backend y la conectividad con PostgreSQL en Supabase.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Health Check",
+        "description": "Verifica el estado del backend y la conectividad con PostgreSQL en Supabase.",
+        "operationId": "health_check_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "tags": ["Identity & Users"],
+        "summary": "Get Current Authenticated User",
+        "description": "Devuelve el usuario autenticado mediante Supabase JWT, su perfil, preferencias y membresías en organizaciones.",
+        "operationId": "get_me_api_v1_auth_me_get",
+        "security": [{ "HTTPBearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserMeResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/profile": {
+      "patch": {
+        "tags": ["Identity & Users"],
+        "summary": "Update My Profile",
+        "description": "Actualiza el perfil del usuario autenticado.",
+        "operationId": "update_my_profile_api_v1_users_me_profile_patch",
+        "security": [{ "HTTPBearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserProfileUpdate" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserProfileResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/preferences": {
+      "patch": {
+        "tags": ["Identity & Users"],
+        "summary": "Update My Preferences & RGPD Consents",
+        "description": "Actualiza las preferencias de idioma, radio de búsqueda y consentimientos RGPD del usuario autenticado.",
+        "operationId": "update_my_preferences_api_v1_users_me_preferences_patch",
+        "security": [{ "HTTPBearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserPreferenceUpdate" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserPreferenceResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/addresses": {
+      "get": {
+        "tags": ["Identity & Users"],
+        "summary": "List My Addresses",
+        "description": "Lista las direcciones guardadas por el usuario autenticado.",
+        "operationId": "list_my_addresses_api_v1_users_me_addresses_get",
+        "security": [{ "HTTPBearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/AddressResponse" },
+                  "title": "Response List My Addresses Api V1 Users Me Addresses Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Identity & Users"],
+        "summary": "Add User Address",
+        "description": "Añade una dirección asociada al usuario autenticado.",
+        "operationId": "create_my_address_api_v1_users_me_addresses_post",
+        "security": [{ "HTTPBearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AddressCreate" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AddressResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/addresses/{address_id}": {
+      "delete": {
+        "tags": ["Identity & Users"],
+        "summary": "Delete My Address",
+        "description": "Elimina una dirección propia del usuario autenticado.",
+        "operationId": "delete_my_address_api_v1_users_me_addresses__address_id__delete",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "address_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Address Id" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{user_id}": {
+      "get": {
+        "tags": ["Identity & Users"],
+        "summary": "Get Public User Profile",
+        "description": "Devuelve la información pública de un usuario (sin exponer datos sensibles ni privados).",
+        "operationId": "get_public_user_api_v1_users__user_id__get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "User Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserPublicResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations": {
+      "post": {
+        "tags": ["Organizations & Members"],
+        "summary": "Create Organization",
+        "description": "Crea una organización independiente (protectora o empresa) y asigna al creador como OWNER activo.",
+        "operationId": "create_organization_api_v1_organizations_post",
+        "security": [{ "HTTPBearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrganizationCreate" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Organizations & Members"],
+        "summary": "List Organizations",
+        "description": "Lista organizaciones activas con soporte de paginación y filtros por tipo, verificación, búsqueda y radio en km.",
+        "operationId": "list_organizations_api_v1_organizations_get",
+        "parameters": [
+          {
+            "name": "org_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "$ref": "#/components/schemas/OrganizationType" }, { "type": "null" }],
+              "title": "Org Type"
+            }
+          },
+          {
+            "name": "verified_only",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "boolean", "default": false, "title": "Verified Only" }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string", "maxLength": 120 }, { "type": "null" }],
+              "title": "Search"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "number", "maximum": 90.0, "minimum": -90.0 }, { "type": "null" }],
+              "title": "Latitude"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "number", "maximum": 180.0, "minimum": -180.0 }, { "type": "null" }],
+              "title": "Longitude"
+            }
+          },
+          {
+            "name": "radius_km",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "number", "exclusiveMinimum": 0.0, "maximum": 1000.0 }, { "type": "null" }],
+              "title": "Radius Km"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "default": 1, "title": "Page" }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "maximum": 100, "minimum": 1, "default": 20, "title": "Page Size" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedResponse_OrganizationResponse_" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations/my": {
+      "get": {
+        "tags": ["Organizations & Members"],
+        "summary": "List My Organizations",
+        "description": "Devuelve las organizaciones a las que pertenece el usuario autenticado junto con su rol.",
+        "operationId": "list_my_organizations_api_v1_organizations_my_get",
+        "security": [{ "HTTPBearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/MyOrganizationMembershipResponse" },
+                  "title": "Response List My Organizations Api V1 Organizations My Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_id}": {
+      "get": {
+        "tags": ["Organizations & Members"],
+        "summary": "Get Organization Details",
+        "description": "Obtiene el detalle de una organización.",
+        "operationId": "get_organization_api_v1_organizations__org_id__get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationResponse" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Organizations & Members"],
+        "summary": "Update Organization",
+        "description": "Actualiza los datos de una organización (requiere rol OWNER o ADMIN en la organización).",
+        "operationId": "update_organization_api_v1_organizations__org_id__patch",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrganizationUpdate" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationResponse" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Organizations & Members"],
+        "summary": "Delete Organization",
+        "description": "Realiza la baja lógica de una organización (requiere rol OWNER en la organización).",
+        "operationId": "delete_organization_api_v1_organizations__org_id__delete",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_id}/addresses": {
+      "get": {
+        "tags": ["Organizations & Members"],
+        "summary": "List Organization Addresses",
+        "description": "Lista las direcciones físicas asociadas a una organización.",
+        "operationId": "list_organization_addresses_api_v1_organizations__org_id__addresses_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/AddressResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Organizations & Members"],
+        "summary": "Add Organization Address",
+        "description": "Añade una dirección física a la organización (requiere al menos rol MANAGER).",
+        "operationId": "add_organization_address_api_v1_organizations__org_id__addresses_post",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AddressCreate" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AddressResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_id}/addresses/{address_id}": {
+      "delete": {
+        "tags": ["Organizations & Members"],
+        "summary": "Delete Organization Address",
+        "description": "Elimina una dirección de la organización (requiere al menos rol MANAGER).",
+        "operationId": "delete_organization_address_api_v1_organizations__org_id__addresses__address_id__delete",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          },
+          {
+            "name": "address_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Address Id" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_id}/members": {
+      "get": {
+        "tags": ["Organizations & Members"],
+        "summary": "List Organization Members",
+        "description": "Lista los miembros de una organización (exclusivo para miembros activos de dicha organización).",
+        "operationId": "list_organization_members_api_v1_organizations__org_id__members_get",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/OrganizationMemberResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Organizations & Members"],
+        "summary": "Add Organization Member",
+        "description": "Añade un miembro a la organización con el rol indicado (requiere OWNER o ADMIN).",
+        "operationId": "add_organization_member_api_v1_organizations__org_id__members_post",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrganizationMemberCreate" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationMemberResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_id}/members/{member_id}": {
+      "patch": {
+        "tags": ["Organizations & Members"],
+        "summary": "Update Organization Member Role or Status",
+        "description": "Modifica el rol o estado de un miembro (protege que nunca quede la organización sin al menos un OWNER activo).",
+        "operationId": "update_organization_member_api_v1_organizations__org_id__members__member_id__patch",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Member Id" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrganizationMemberUpdate" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationMemberResponse" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Organizations & Members"],
+        "summary": "Remove Organization Member",
+        "description": "Elimina un miembro de la organización o permite que un miembro abandone la organización (salvo el único OWNER).",
+        "operationId": "remove_organization_member_api_v1_organizations__org_id__members__member_id__delete",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Member Id" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_id}/verifications": {
+      "post": {
+        "tags": ["Organizations & Members"],
+        "summary": "Submit Organization Verification Request",
+        "description": "Inicia una solicitud de verificación oficial para la organización (requiere OWNER o ADMIN).",
+        "operationId": "submit_organization_verification_api_v1_organizations__org_id__verifications_post",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrganizationVerificationCreate" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Organizations & Members"],
+        "summary": "List Organization Verification Requests",
+        "description": "Consulta las solicitudes de verificación de la propia organización (requiere OWNER o ADMIN).",
+        "operationId": "list_organization_verifications_api_v1_organizations__org_id__verifications_get",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/verifications": {
+      "get": {
+        "tags": ["Moderation & Administration"],
+        "summary": "List Organization Verifications (Admin/Moderator)",
+        "description": "Lista paginada de solicitudes de verificación de organizaciones (exclusivo para MODERATOR y SUPERADMIN).",
+        "operationId": "list_admin_verifications_api_v1_admin_verifications_get",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "$ref": "#/components/schemas/VerificationRequestStatus" }, { "type": "null" }],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "default": 1, "title": "Page" }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "maximum": 100, "minimum": 1, "default": 20, "title": "Page Size" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse_OrganizationVerificationResponse_"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/verifications/{verification_id}": {
+      "patch": {
+        "tags": ["Moderation & Administration"],
+        "summary": "Review Organization Verification (Admin/Moderator)",
+        "description": "Aprueba, rechaza o solicita información adicional sobre la verificación de una organización.",
+        "operationId": "review_admin_verification_api_v1_admin_verifications__verification_id__patch",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "verification_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid", "title": "Verification Id" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrganizationVerificationReview" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/audit-logs": {
+      "get": {
+        "tags": ["Moderation & Administration"],
+        "summary": "List Audit Logs (Admin/Moderator)",
+        "description": "Consulta el registro de auditoría de operaciones críticas (exclusivo para MODERATOR y SUPERADMIN).",
+        "operationId": "list_audit_logs_api_v1_admin_audit_logs_get",
+        "security": [{ "HTTPBearer": [] }],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }],
+              "title": "Organization Id"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Action"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "default": 1, "title": "Page" }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "maximum": 100, "minimum": 1, "default": 20, "title": "Page Size" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginatedResponse_AuditLogResponse_" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "required": ["status", "service", "version", "environment", "database"],
+        "properties": {
+          "status": { "type": "string", "title": "Status" },
+          "service": { "type": "string", "title": "Service" },
+          "version": { "type": "string", "title": "Version" },
+          "environment": { "type": "string", "title": "Environment" },
+          "database": { "type": "string", "title": "Database" }
+        },
+        "title": "HealthResponse"
+      },
+      "SystemRole": {
+        "type": "string",
+        "enum": ["USER", "MODERATOR", "SUPERADMIN"],
+        "title": "SystemRole"
+      },
+      "OrganizationRole": {
+        "type": "string",
+        "enum": ["OWNER", "ADMIN", "MANAGER", "EDITOR", "MEMBER"],
+        "title": "OrganizationRole"
+      },
+      "OrganizationType": {
+        "type": "string",
+        "enum": [
+          "SHELTER",
+          "VETERINARY",
+          "INSURANCE",
+          "PET_STORE",
+          "TRAINER",
+          "GROOMING",
+          "BOARDING",
+          "OTHER"
+        ],
+        "title": "OrganizationType"
+      },
+      "OrganizationVerificationState": {
+        "type": "string",
+        "enum": ["UNVERIFIED", "PENDING", "VERIFIED", "REJECTED", "SUSPENDED"],
+        "title": "OrganizationVerificationState"
+      },
+      "MemberStatus": {
+        "type": "string",
+        "enum": ["INVITED", "ACTIVE", "SUSPENDED"],
+        "title": "MemberStatus"
+      },
+      "VerificationRequestStatus": {
+        "type": "string",
+        "enum": ["PENDING", "UNDER_REVIEW", "APPROVED", "REJECTED", "MORE_INFO_REQUIRED"],
+        "title": "VerificationRequestStatus"
+      },
+      "AddressCreate": {
+        "type": "object",
+        "required": ["street_line_1", "city"],
+        "properties": {
+          "label": { "anyOf": [{ "type": "string", "maxLength": 80 }, { "type": "null" }], "title": "Label" },
+          "street_line_1": { "type": "string", "minLength": 2, "maxLength": 255, "title": "Street Line 1" },
+          "street_line_2": { "anyOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }], "title": "Street Line 2" },
+          "city": { "type": "string", "minLength": 2, "maxLength": 120, "title": "City" },
+          "state_province": { "anyOf": [{ "type": "string", "maxLength": 120 }, { "type": "null" }], "title": "State Province" },
+          "postal_code": { "anyOf": [{ "type": "string", "maxLength": 24 }, { "type": "null" }], "title": "Postal Code" },
+          "country_code": { "type": "string", "minLength": 2, "maxLength": 2, "default": "ES", "title": "Country Code" },
+          "latitude": { "anyOf": [{ "type": "number", "minimum": -90.0, "maximum": 90.0 }, { "type": "null" }], "title": "Latitude" },
+          "longitude": { "anyOf": [{ "type": "number", "minimum": -180.0, "maximum": 180.0 }, { "type": "null" }], "title": "Longitude" },
+          "is_primary": { "type": "boolean", "default": false, "title": "Is Primary" }
+        },
+        "title": "AddressCreate"
+      },
+      "AddressResponse": {
+        "type": "object",
+        "required": ["id", "street_line_1", "city", "country_code", "is_primary", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "User Id" },
+          "organization_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Organization Id" },
+          "label": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Label" },
+          "street_line_1": { "type": "string", "title": "Street Line 1" },
+          "street_line_2": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Street Line 2" },
+          "city": { "type": "string", "title": "City" },
+          "state_province": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "State Province" },
+          "postal_code": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Postal Code" },
+          "country_code": { "type": "string", "title": "Country Code" },
+          "latitude": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Latitude" },
+          "longitude": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Longitude" },
+          "is_primary": { "type": "boolean", "title": "Is Primary" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "AddressResponse"
+      },
+      "UserProfileResponse": {
+        "type": "object",
+        "required": ["id", "is_public", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "username": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Username" },
+          "display_name": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Display Name" },
+          "bio": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Bio" },
+          "avatar_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Avatar Url" },
+          "phone": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Phone" },
+          "primary_address_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Primary Address Id" },
+          "is_public": { "type": "boolean", "title": "Is Public" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "UserProfileResponse"
+      },
+      "UserProfileUpdate": {
+        "type": "object",
+        "properties": {
+          "username": { "anyOf": [{ "type": "string", "minLength": 3, "maxLength": 64 }, { "type": "null" }], "title": "Username" },
+          "display_name": { "anyOf": [{ "type": "string", "minLength": 1, "maxLength": 120 }, { "type": "null" }], "title": "Display Name" },
+          "bio": { "anyOf": [{ "type": "string", "maxLength": 1000 }, { "type": "null" }], "title": "Bio" },
+          "avatar_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Avatar Url" },
+          "phone": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Phone" },
+          "primary_address_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Primary Address Id" },
+          "is_public": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Is Public" },
+          "terms_accepted": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Terms Accepted" }
+        },
+        "title": "UserProfileUpdate"
+      },
+      "UserPreferenceResponse": {
+        "type": "object",
+        "required": ["id", "language", "search_radius_km", "marketing_consent", "geolocation_consent", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "language": { "type": "string", "title": "Language" },
+          "search_radius_km": { "type": "integer", "title": "Search Radius Km" },
+          "marketing_consent": { "type": "boolean", "title": "Marketing Consent" },
+          "marketing_consent_at": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "title": "Marketing Consent At" },
+          "geolocation_consent": { "type": "boolean", "title": "Geolocation Consent" },
+          "extra_settings": { "type": "object", "additionalProperties": true, "title": "Extra Settings" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "UserPreferenceResponse"
+      },
+      "UserPreferenceUpdate": {
+        "type": "object",
+        "properties": {
+          "language": { "anyOf": [{ "type": "string", "enum": ["es", "en", "ca", "gl", "eu"] }, { "type": "null" }], "title": "Language" },
+          "search_radius_km": { "anyOf": [{ "type": "integer", "minimum": 1, "maximum": 1000 }, { "type": "null" }], "title": "Search Radius Km" },
+          "marketing_consent": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Marketing Consent" },
+          "geolocation_consent": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Geolocation Consent" },
+          "extra_settings": { "anyOf": [{ "type": "object", "additionalProperties": true }, { "type": "null" }], "title": "Extra Settings" }
+        },
+        "title": "UserPreferenceUpdate"
+      },
+      "UserOrganizationMembershipBrief": {
+        "type": "object",
+        "required": ["organization_id", "role", "status"],
+        "properties": {
+          "organization_id": { "type": "string", "format": "uuid", "title": "Organization Id" },
+          "role": { "$ref": "#/components/schemas/OrganizationRole" },
+          "status": { "type": "string", "title": "Status" }
+        },
+        "title": "UserOrganizationMembershipBrief"
+      },
+      "UserMeResponse": {
+        "type": "object",
+        "required": ["id", "auth_id", "email", "system_role", "is_active", "terms_accepted", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "auth_id": { "type": "string", "format": "uuid", "title": "Auth Id" },
+          "email": { "type": "string", "format": "email", "title": "Email" },
+          "system_role": { "$ref": "#/components/schemas/SystemRole" },
+          "is_active": { "type": "boolean", "title": "Is Active" },
+          "terms_accepted": { "type": "boolean", "title": "Terms Accepted" },
+          "terms_accepted_at": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "title": "Terms Accepted At" },
+          "profile": { "anyOf": [{ "$ref": "#/components/schemas/UserProfileResponse" }, { "type": "null" }] },
+          "preferences": { "anyOf": [{ "$ref": "#/components/schemas/UserPreferenceResponse" }, { "type": "null" }] },
+          "memberships": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/UserOrganizationMembershipBrief" },
+            "title": "Memberships"
+          },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "UserMeResponse"
+      },
+      "UserPublicResponse": {
+        "type": "object",
+        "required": ["id", "created_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "username": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Username" },
+          "display_name": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Display Name" },
+          "bio": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Bio" },
+          "avatar_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Avatar Url" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" }
+        },
+        "title": "UserPublicResponse"
+      },
+      "OrganizationCreate": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 2, "maxLength": 160, "title": "Name" },
+          "slug": { "anyOf": [{ "type": "string", "minLength": 2, "maxLength": 180 }, { "type": "null" }], "title": "Slug" },
+          "org_type": { "$ref": "#/components/schemas/OrganizationType", "default": "SHELTER" },
+          "tax_id": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Tax Id" },
+          "description": { "anyOf": [{ "type": "string", "maxLength": 3000 }, { "type": "null" }], "title": "Description" },
+          "logo_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Logo Url" },
+          "cover_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Cover Url" },
+          "website_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Website Url" },
+          "contact_email": { "anyOf": [{ "type": "string", "format": "email" }, { "type": "null" }], "title": "Contact Email" },
+          "contact_phone": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Contact Phone" }
+        },
+        "title": "OrganizationCreate"
+      },
+      "OrganizationUpdate": {
+        "type": "object",
+        "properties": {
+          "name": { "anyOf": [{ "type": "string", "minLength": 2, "maxLength": 160 }, { "type": "null" }], "title": "Name" },
+          "org_type": { "anyOf": [{ "$ref": "#/components/schemas/OrganizationType" }, { "type": "null" }] },
+          "tax_id": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Tax Id" },
+          "description": { "anyOf": [{ "type": "string", "maxLength": 3000 }, { "type": "null" }], "title": "Description" },
+          "logo_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Logo Url" },
+          "cover_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Cover Url" },
+          "website_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Website Url" },
+          "contact_email": { "anyOf": [{ "type": "string", "format": "email" }, { "type": "null" }], "title": "Contact Email" },
+          "contact_phone": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Contact Phone" }
+        },
+        "title": "OrganizationUpdate"
+      },
+      "OrganizationResponse": {
+        "type": "object",
+        "required": ["id", "name", "slug", "org_type", "verification_status", "is_active", "created_by_user_id", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "name": { "type": "string", "title": "Name" },
+          "slug": { "type": "string", "title": "Slug" },
+          "org_type": { "$ref": "#/components/schemas/OrganizationType" },
+          "tax_id": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Tax Id" },
+          "description": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Description" },
+          "logo_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Logo Url" },
+          "cover_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Cover Url" },
+          "website_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Website Url" },
+          "contact_email": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Contact Email" },
+          "contact_phone": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Contact Phone" },
+          "verification_status": { "$ref": "#/components/schemas/OrganizationVerificationState" },
+          "is_active": { "type": "boolean", "title": "Is Active" },
+          "created_by_user_id": { "type": "string", "format": "uuid", "title": "Created By User Id" },
+          "addresses": { "type": "array", "items": { "$ref": "#/components/schemas/AddressResponse" }, "title": "Addresses" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "OrganizationResponse"
+      },
+      "MyOrganizationMembershipResponse": {
+        "type": "object",
+        "required": ["organization", "role", "status", "joined_at"],
+        "properties": {
+          "organization": { "$ref": "#/components/schemas/OrganizationResponse" },
+          "role": { "$ref": "#/components/schemas/OrganizationRole" },
+          "status": { "$ref": "#/components/schemas/MemberStatus" },
+          "joined_at": { "type": "string", "format": "date-time", "title": "Joined At" }
+        },
+        "title": "MyOrganizationMembershipResponse"
+      },
+      "OrganizationMemberCreate": {
+        "type": "object",
+        "required": ["user_id"],
+        "properties": {
+          "user_id": { "type": "string", "format": "uuid", "title": "User Id" },
+          "role": { "$ref": "#/components/schemas/OrganizationRole", "default": "MEMBER" }
+        },
+        "title": "OrganizationMemberCreate"
+      },
+      "OrganizationMemberUpdate": {
+        "type": "object",
+        "properties": {
+          "role": { "anyOf": [{ "$ref": "#/components/schemas/OrganizationRole" }, { "type": "null" }] },
+          "status": { "anyOf": [{ "$ref": "#/components/schemas/MemberStatus" }, { "type": "null" }] }
+        },
+        "title": "OrganizationMemberUpdate"
+      },
+      "OrganizationMemberResponse": {
+        "type": "object",
+        "required": ["id", "organization_id", "user_id", "role", "status", "joined_at", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "organization_id": { "type": "string", "format": "uuid", "title": "Organization Id" },
+          "user_id": { "type": "string", "format": "uuid", "title": "User Id" },
+          "role": { "$ref": "#/components/schemas/OrganizationRole" },
+          "status": { "$ref": "#/components/schemas/MemberStatus" },
+          "invited_by_user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Invited By User Id" },
+          "joined_at": { "type": "string", "format": "date-time", "title": "Joined At" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "OrganizationMemberResponse"
+      },
+      "VerificationDocumentItem": {
+        "type": "object",
+        "required": ["file_path", "document_type"],
+        "properties": {
+          "file_path": { "type": "string", "minLength": 3, "maxLength": 512, "title": "File Path" },
+          "document_type": { "type": "string", "minLength": 2, "maxLength": 64, "title": "Document Type" },
+          "description": { "anyOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }], "title": "Description" }
+        },
+        "title": "VerificationDocumentItem"
+      },
+      "OrganizationVerificationCreate": {
+        "type": "object",
+        "required": ["legal_name", "tax_id"],
+        "properties": {
+          "legal_name": { "type": "string", "minLength": 2, "maxLength": 200, "title": "Legal Name" },
+          "tax_id": { "type": "string", "minLength": 4, "maxLength": 32, "title": "Tax Id" },
+          "registry_number": { "anyOf": [{ "type": "string", "maxLength": 80 }, { "type": "null" }], "title": "Registry Number" },
+          "documents": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/VerificationDocumentItem" },
+            "title": "Documents"
+          },
+          "notes": { "anyOf": [{ "type": "string", "maxLength": 2000 }, { "type": "null" }], "title": "Notes" }
+        },
+        "title": "OrganizationVerificationCreate"
+      },
+      "OrganizationVerificationReview": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["UNDER_REVIEW", "APPROVED", "REJECTED", "MORE_INFO_REQUIRED"],
+            "title": "Status"
+          },
+          "notes": { "anyOf": [{ "type": "string", "maxLength": 2000 }, { "type": "null" }], "title": "Notes" },
+          "rejection_reason": { "anyOf": [{ "type": "string", "maxLength": 2000 }, { "type": "null" }], "title": "Rejection Reason" }
+        },
+        "title": "OrganizationVerificationReview"
+      },
+      "OrganizationVerificationResponse": {
+        "type": "object",
+        "required": ["id", "organization_id", "submitted_by_user_id", "status", "legal_name", "tax_id", "submitted_at", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "organization_id": { "type": "string", "format": "uuid", "title": "Organization Id" },
+          "submitted_by_user_id": { "type": "string", "format": "uuid", "title": "Submitted By User Id" },
+          "reviewed_by_user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Reviewed By User Id" },
+          "status": { "$ref": "#/components/schemas/VerificationRequestStatus" },
+          "legal_name": { "type": "string", "title": "Legal Name" },
+          "tax_id": { "type": "string", "title": "Tax Id" },
+          "registry_number": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Registry Number" },
+          "documents": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/VerificationDocumentItem" },
+            "title": "Documents"
+          },
+          "notes": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Notes" },
+          "rejection_reason": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Rejection Reason" },
+          "submitted_at": { "type": "string", "format": "date-time", "title": "Submitted At" },
+          "reviewed_at": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "title": "Reviewed At" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
+          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+        },
+        "title": "OrganizationVerificationResponse"
+      },
+      "AuditLogResponse": {
+        "type": "object",
+        "required": ["id", "action", "target_type", "created_at"],
+        "properties": {
+          "id": { "type": "string", "format": "uuid", "title": "Id" },
+          "actor_user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Actor User Id" },
+          "organization_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Organization Id" },
+          "action": { "type": "string", "title": "Action" },
+          "target_type": { "type": "string", "title": "Target Type" },
+          "target_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Target Id" },
+          "metadata": { "type": "object", "additionalProperties": true, "title": "Metadata" },
+          "created_at": { "type": "string", "format": "date-time", "title": "Created At" }
+        },
+        "title": "AuditLogResponse"
+      },
+      "PaginatedResponse_OrganizationResponse_": {
+        "type": "object",
+        "required": ["items", "total", "page", "page_size", "total_pages"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/OrganizationResponse" }
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "page": { "type": "integer", "title": "Page" },
+          "page_size": { "type": "integer", "title": "Page Size" },
+          "total_pages": { "type": "integer", "title": "Total Pages" }
+        },
+        "title": "PaginatedResponse[OrganizationResponse]"
+      },
+      "PaginatedResponse_OrganizationVerificationResponse_": {
+        "type": "object",
+        "required": ["items", "total", "page", "page_size", "total_pages"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "page": { "type": "integer", "title": "Page" },
+          "page_size": { "type": "integer", "title": "Page Size" },
+          "total_pages": { "type": "integer", "title": "Total Pages" }
+        },
+        "title": "PaginatedResponse[OrganizationVerificationResponse]"
+      },
+      "PaginatedResponse_AuditLogResponse_": {
+        "type": "object",
+        "required": ["items", "total", "page", "page_size", "total_pages"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AuditLogResponse" }
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "page": { "type": "integer", "title": "Page" },
+          "page_size": { "type": "integer", "title": "Page Size" },
+          "total_pages": { "type": "integer", "title": "Total Pages" }
+        },
+        "title": "PaginatedResponse[AuditLogResponse]"
+      },
+      "ValidationError": {
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "properties": {
+          "loc": {
+            "type": "array",
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "title": "Location"
+          },
+          "msg": { "type": "string", "title": "Message" },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "title": "ValidationError"
+      },
+      "HTTPValidationError": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "title": "Detail"
+          }
+        },
+        "title": "HTTPValidationError"
+      }
+    }
+  }
+}
+

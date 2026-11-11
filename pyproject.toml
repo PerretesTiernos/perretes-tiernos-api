@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "perretes-tiernos-api"
+version = "0.1.0"
+description = "Backend modular para plataforma digital de bienestar animal (Red social, Adopciones, Matching, Marketplace y Reservas)"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "Proprietary" }
+authors = [
+  { name = "Perretes Tiernos Team" }
+]
+dependencies = [
+  "fastapi>=0.115.0,<1.0.0",
+  "uvicorn[standard]>=0.32.0,<1.0.0",
+  "pydantic[email]>=2.10.0,<3.0.0",
+  "pydantic-settings>=2.6.0,<3.0.0",
+  "sqlalchemy[asyncio]>=2.0.36,<3.0.0",
+  "asyncpg>=0.30.0,<1.0.0",
+  "alembic>=1.14.0,<2.0.0",
+  "PyJWT[crypto]>=2.10.0,<3.0.0",
+  "httpx>=0.28.0,<1.0.0",
+  "redis>=5.2.0,<6.0.0",
+  "arq>=0.26.1,<1.0.0",
+  "sentry-sdk[fastapi]>=2.19.0,<3.0.0",
+  "resend>=2.5.0,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0,<9.0.0",
+  "pytest-asyncio>=0.24.0,<1.0.0",
+  "pytest-cov>=6.0.0,<7.0.0",
+  "aiosqlite>=0.20.0,<1.0.0",
+  "ruff>=0.8.0,<1.0.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra -q --strict-markers"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["app", "tests", "migrations", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "ASYNC", "S"]
+ignore = ["B008", "S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S105", "S106"]
+"migrations/**/*.py" = ["E501"]
+
