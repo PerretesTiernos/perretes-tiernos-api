@@ -31,6 +31,18 @@ async def get_current_user(
     return await identity_service.get_or_provision_user(token_payload)
 
 
+async def get_optional_user(
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
+    db: AsyncSession = Depends(get_db),
+) -> User | None:
+    """Resolves the authenticated User if a Bearer token is provided, or returns None."""
+    if credentials is None or not credentials.credentials:
+        return None
+    token_payload = decode_supabase_jwt(credentials.credentials)
+    identity_service = IdentityService(db)
+    return await identity_service.get_or_provision_user(token_payload)
+
+
 async def require_moderator(
     current_user: User = Depends(get_current_user),
 ) -> User:
@@ -51,7 +63,7 @@ __all__ = [
     "get_db",
     "get_token_payload",
     "get_current_user",
+    "get_optional_user",
     "require_moderator",
     "rate_limit_sensitive",
 ]
-
