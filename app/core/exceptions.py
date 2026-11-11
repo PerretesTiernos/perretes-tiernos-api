@@ -60,7 +60,7 @@ class ConflictError(AppError):
 
 
 class DomainValidationError(AppError):
-    status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
+    status_code = getattr(status, "HTTP_422_UNPROCESSABLE_CONTENT", 422)
     error_code = "domain_validation_error"
 
 
@@ -100,7 +100,7 @@ def setup_exception_handlers(app: FastAPI) -> None:
             for err in exc.errors()
         ]
         return JSONResponse(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=getattr(status, "HTTP_422_UNPROCESSABLE_CONTENT", 422),
             content={
                 "error": {
                     "code": "validation_error",

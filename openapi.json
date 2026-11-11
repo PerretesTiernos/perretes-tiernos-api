@@ -8,7 +8,9 @@
   "paths": {
     "/": {
       "get": {
-        "tags": ["Root"],
+        "tags": [
+          "Root"
+        ],
         "summary": "API Root",
         "operationId": "root__get",
         "responses": {
@@ -17,7 +19,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": { "type": "string" },
+                  "additionalProperties": {
+                    "type": "string"
+                  },
                   "type": "object",
                   "title": "Response Root  Get"
                 }
@@ -29,7 +33,9 @@
     },
     "/health": {
       "get": {
-        "tags": ["Health"],
+        "tags": [
+          "Health"
+        ],
         "summary": "Health Check",
         "description": "Verifica el estado del backend y la conectividad con PostgreSQL en Supabase.",
         "operationId": "health_check_health_get",
@@ -38,7 +44,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
               }
             }
           }
@@ -47,7 +55,9 @@
     },
     "/api/v1/health": {
       "get": {
-        "tags": ["Health"],
+        "tags": [
+          "Health"
+        ],
         "summary": "Health Check",
         "description": "Verifica el estado del backend y la conectividad con PostgreSQL en Supabase.",
         "operationId": "health_check_api_v1_health_get",
@@ -56,7 +66,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
               }
             }
           }
@@ -65,17 +77,25 @@
     },
     "/api/v1/auth/me": {
       "get": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "Get Current Authenticated User",
         "description": "Devuelve el usuario autenticado mediante Supabase JWT, su perfil, preferencias y membresías en organizaciones.",
         "operationId": "get_me_api_v1_auth_me_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserMeResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/UserMeResponse"
+                }
               }
             }
           }
@@ -84,16 +104,24 @@
     },
     "/api/v1/users/me/profile": {
       "patch": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "Update My Profile",
         "description": "Actualiza el perfil del usuario autenticado.",
         "operationId": "update_my_profile_api_v1_users_me_profile_patch",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/UserProfileUpdate" }
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileUpdate"
+              }
             }
           }
         },
@@ -102,7 +130,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserProfileResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileResponse"
+                }
               }
             }
           },
@@ -110,7 +140,9 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -119,16 +151,24 @@
     },
     "/api/v1/users/me/preferences": {
       "patch": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "Update My Preferences & RGPD Consents",
         "description": "Actualiza las preferencias de idioma, radio de búsqueda y consentimientos RGPD del usuario autenticado.",
         "operationId": "update_my_preferences_api_v1_users_me_preferences_patch",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/UserPreferenceUpdate" }
+              "schema": {
+                "$ref": "#/components/schemas/UserPreferenceUpdate"
+              }
             }
           }
         },
@@ -137,7 +177,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserPreferenceResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/UserPreferenceResponse"
+                }
               }
             }
           },
@@ -145,7 +187,9 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -154,11 +198,17 @@
     },
     "/api/v1/users/me/addresses": {
       "get": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "List My Addresses",
         "description": "Lista las direcciones guardadas por el usuario autenticado.",
         "operationId": "list_my_addresses_api_v1_users_me_addresses_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -166,7 +216,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/AddressResponse" },
+                  "items": {
+                    "$ref": "#/components/schemas/AddressResponse"
+                  },
                   "title": "Response List My Addresses Api V1 Users Me Addresses Get"
                 }
               }
@@ -175,16 +227,24 @@
         }
       },
       "post": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "Add User Address",
         "description": "Añade una dirección asociada al usuario autenticado.",
         "operationId": "create_my_address_api_v1_users_me_addresses_post",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/AddressCreate" }
+              "schema": {
+                "$ref": "#/components/schemas/AddressCreate"
+              }
             }
           }
         },
@@ -193,7 +253,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/AddressResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                }
               }
             }
           },
@@ -201,7 +263,9 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -210,26 +274,40 @@
     },
     "/api/v1/users/me/addresses/{address_id}": {
       "delete": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "Delete My Address",
         "description": "Elimina una dirección propia del usuario autenticado.",
         "operationId": "delete_my_address_api_v1_users_me_addresses__address_id__delete",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "address_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Address Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Address Id"
+            }
           }
         ],
         "responses": {
-          "204": { "description": "Successful Response" },
+          "204": {
+            "description": "Successful Response"
+          },
           "422": {
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -238,7 +316,9 @@
     },
     "/api/v1/users/{user_id}": {
       "get": {
-        "tags": ["Identity & Users"],
+        "tags": [
+          "Identity & Users"
+        ],
         "summary": "Get Public User Profile",
         "description": "Devuelve la información pública de un usuario (sin exponer datos sensibles ni privados).",
         "operationId": "get_public_user_api_v1_users__user_id__get",
@@ -247,7 +327,11 @@
             "name": "user_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "User Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
           }
         ],
         "responses": {
@@ -255,7 +339,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/UserPublicResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublicResponse"
+                }
               }
             }
           },
@@ -263,7 +349,9 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -272,16 +360,24 @@
     },
     "/api/v1/organizations": {
       "post": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Create Organization",
         "description": "Crea una organización independiente (protectora o empresa) y asigna al creador como OWNER activo.",
         "operationId": "create_organization_api_v1_organizations_post",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/OrganizationCreate" }
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationCreate"
+              }
             }
           }
         },
@@ -290,7 +386,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationResponse"
+                }
               }
             }
           },
@@ -298,14 +396,18 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
         }
       },
       "get": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "List Organizations",
         "description": "Lista organizaciones activas con soporte de paginación y filtros por tipo, verificación, búsqueda y radio en km.",
         "operationId": "list_organizations_api_v1_organizations_get",
@@ -315,7 +417,14 @@
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "$ref": "#/components/schemas/OrganizationType" }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/OrganizationType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Org Type"
             }
           },
@@ -323,14 +432,26 @@
             "name": "verified_only",
             "in": "query",
             "required": false,
-            "schema": { "type": "boolean", "default": false, "title": "Verified Only" }
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Verified Only"
+            }
           },
           {
             "name": "search",
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "type": "string", "maxLength": 120 }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Search"
             }
           },
@@ -339,7 +460,16 @@
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "type": "number", "maximum": 90.0, "minimum": -90.0 }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 90,
+                  "minimum": -90
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Latitude"
             }
           },
@@ -348,7 +478,16 @@
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "type": "number", "maximum": 180.0, "minimum": -180.0 }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "type": "number",
+                  "maximum": 180,
+                  "minimum": -180
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Longitude"
             }
           },
@@ -357,7 +496,16 @@
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "type": "number", "exclusiveMinimum": 0.0, "maximum": 1000.0 }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Radius Km"
             }
           },
@@ -365,13 +513,24 @@
             "name": "page",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "minimum": 1, "default": 1, "title": "Page" }
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
           },
           {
             "name": "page_size",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "maximum": 100, "minimum": 1, "default": 20, "title": "Page Size" }
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Page Size"
+            }
           }
         ],
         "responses": {
@@ -379,7 +538,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/PaginatedResponse_OrganizationResponse_" }
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse_OrganizationResponse_"
+                }
               }
             }
           },
@@ -387,7 +548,9 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
               }
             }
           }
@@ -396,11 +559,17 @@
     },
     "/api/v1/organizations/my": {
       "get": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "List My Organizations",
         "description": "Devuelve las organizaciones a las que pertenece el usuario autenticado junto con su rol.",
         "operationId": "list_my_organizations_api_v1_organizations_my_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -408,7 +577,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/MyOrganizationMembershipResponse" },
+                  "items": {
+                    "$ref": "#/components/schemas/MyOrganizationMembershipResponse"
+                  },
                   "title": "Response List My Organizations Api V1 Organizations My Get"
                 }
               }
@@ -419,7 +590,9 @@
     },
     "/api/v1/organizations/{org_id}": {
       "get": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Get Organization Details",
         "description": "Obtiene el detalle de una organización.",
         "operationId": "get_organization_api_v1_organizations__org_id__get",
@@ -428,7 +601,11 @@
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "responses": {
@@ -436,31 +613,45 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationResponse"
+                }
               }
             }
           }
         }
       },
       "patch": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Update Organization",
         "description": "Actualiza los datos de una organización (requiere rol OWNER o ADMIN en la organización).",
         "operationId": "update_organization_api_v1_organizations__org_id__patch",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/OrganizationUpdate" }
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationUpdate"
+              }
             }
           }
         },
@@ -469,34 +660,50 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationResponse"
+                }
               }
             }
           }
         }
       },
       "delete": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Delete Organization",
         "description": "Realiza la baja lógica de una organización (requiere rol OWNER en la organización).",
         "operationId": "delete_organization_api_v1_organizations__org_id__delete",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "responses": {
-          "204": { "description": "Successful Response" }
+          "204": {
+            "description": "Successful Response"
+          }
         }
       }
     },
     "/api/v1/organizations/{org_id}/addresses": {
       "get": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "List Organization Addresses",
         "description": "Lista las direcciones físicas asociadas a una organización.",
         "operationId": "list_organization_addresses_api_v1_organizations__org_id__addresses_get",
@@ -505,7 +712,11 @@
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "responses": {
@@ -515,7 +726,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/AddressResponse" }
+                  "items": {
+                    "$ref": "#/components/schemas/AddressResponse"
+                  }
                 }
               }
             }
@@ -523,24 +736,36 @@
         }
       },
       "post": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Add Organization Address",
         "description": "Añade una dirección física a la organización (requiere al menos rol MANAGER).",
         "operationId": "add_organization_address_api_v1_organizations__org_id__addresses_post",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/AddressCreate" }
+              "schema": {
+                "$ref": "#/components/schemas/AddressCreate"
+              }
             }
           }
         },
@@ -549,7 +774,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/AddressResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                }
               }
             }
           }
@@ -558,43 +785,69 @@
     },
     "/api/v1/organizations/{org_id}/addresses/{address_id}": {
       "delete": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Delete Organization Address",
         "description": "Elimina una dirección de la organización (requiere al menos rol MANAGER).",
         "operationId": "delete_organization_address_api_v1_organizations__org_id__addresses__address_id__delete",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           },
           {
             "name": "address_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Address Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Address Id"
+            }
           }
         ],
         "responses": {
-          "204": { "description": "Successful Response" }
+          "204": {
+            "description": "Successful Response"
+          }
         }
       }
     },
     "/api/v1/organizations/{org_id}/members": {
       "get": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "List Organization Members",
         "description": "Lista los miembros de una organización (exclusivo para miembros activos de dicha organización).",
         "operationId": "list_organization_members_api_v1_organizations__org_id__members_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "responses": {
@@ -604,7 +857,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/OrganizationMemberResponse" }
+                  "items": {
+                    "$ref": "#/components/schemas/OrganizationMemberResponse"
+                  }
                 }
               }
             }
@@ -612,24 +867,36 @@
         }
       },
       "post": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Add Organization Member",
         "description": "Añade un miembro a la organización con el rol indicado (requiere OWNER o ADMIN).",
         "operationId": "add_organization_member_api_v1_organizations__org_id__members_post",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/OrganizationMemberCreate" }
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationMemberCreate"
+              }
             }
           }
         },
@@ -638,7 +905,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationMemberResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationMemberResponse"
+                }
               }
             }
           }
@@ -647,30 +916,46 @@
     },
     "/api/v1/organizations/{org_id}/members/{member_id}": {
       "patch": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Update Organization Member Role or Status",
         "description": "Modifica el rol o estado de un miembro (protege que nunca quede la organización sin al menos un OWNER activo).",
         "operationId": "update_organization_member_api_v1_organizations__org_id__members__member_id__patch",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           },
           {
             "name": "member_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Member Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Member Id"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/OrganizationMemberUpdate" }
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationMemberUpdate"
+              }
             }
           }
         },
@@ -679,57 +964,87 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationMemberResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationMemberResponse"
+                }
               }
             }
           }
         }
       },
       "delete": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Remove Organization Member",
         "description": "Elimina un miembro de la organización o permite que un miembro abandone la organización (salvo el único OWNER).",
         "operationId": "remove_organization_member_api_v1_organizations__org_id__members__member_id__delete",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           },
           {
             "name": "member_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Member Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Member Id"
+            }
           }
         ],
         "responses": {
-          "204": { "description": "Successful Response" }
+          "204": {
+            "description": "Successful Response"
+          }
         }
       }
     },
     "/api/v1/organizations/{org_id}/verifications": {
       "post": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "Submit Organization Verification Request",
         "description": "Inicia una solicitud de verificación oficial para la organización (requiere OWNER o ADMIN).",
         "operationId": "submit_organization_verification_api_v1_organizations__org_id__verifications_post",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/OrganizationVerificationCreate" }
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationVerificationCreate"
+              }
             }
           }
         },
@@ -738,24 +1053,36 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationVerificationResponse"
+                }
               }
             }
           }
         }
       },
       "get": {
-        "tags": ["Organizations & Members"],
+        "tags": [
+          "Organizations & Members"
+        ],
         "summary": "List Organization Verification Requests",
         "description": "Consulta las solicitudes de verificación de la propia organización (requiere OWNER o ADMIN).",
         "operationId": "list_organization_verifications_api_v1_organizations__org_id__verifications_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "org_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Org Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Org Id"
+            }
           }
         ],
         "responses": {
@@ -765,7 +1092,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+                  "items": {
+                    "$ref": "#/components/schemas/OrganizationVerificationResponse"
+                  }
                 }
               }
             }
@@ -775,18 +1104,31 @@
     },
     "/api/v1/admin/verifications": {
       "get": {
-        "tags": ["Moderation & Administration"],
+        "tags": [
+          "Moderation & Administration"
+        ],
         "summary": "List Organization Verifications (Admin/Moderator)",
         "description": "Lista paginada de solicitudes de verificación de organizaciones (exclusivo para MODERATOR y SUPERADMIN).",
         "operationId": "list_admin_verifications_api_v1_admin_verifications_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "status",
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "$ref": "#/components/schemas/VerificationRequestStatus" }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/VerificationRequestStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Status"
             }
           },
@@ -794,13 +1136,24 @@
             "name": "page",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "minimum": 1, "default": 1, "title": "Page" }
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
           },
           {
             "name": "page_size",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "maximum": 100, "minimum": 1, "default": 20, "title": "Page Size" }
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Page Size"
+            }
           }
         ],
         "responses": {
@@ -819,24 +1172,36 @@
     },
     "/api/v1/admin/verifications/{verification_id}": {
       "patch": {
-        "tags": ["Moderation & Administration"],
+        "tags": [
+          "Moderation & Administration"
+        ],
         "summary": "Review Organization Verification (Admin/Moderator)",
         "description": "Aprueba, rechaza o solicita información adicional sobre la verificación de una organización.",
         "operationId": "review_admin_verification_api_v1_admin_verifications__verification_id__patch",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "verification_id",
             "in": "path",
             "required": true,
-            "schema": { "type": "string", "format": "uuid", "title": "Verification Id" }
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Verification Id"
+            }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/OrganizationVerificationReview" }
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationVerificationReview"
+              }
             }
           }
         },
@@ -845,7 +1210,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationVerificationResponse"
+                }
               }
             }
           }
@@ -854,18 +1221,32 @@
     },
     "/api/v1/admin/audit-logs": {
       "get": {
-        "tags": ["Moderation & Administration"],
+        "tags": [
+          "Moderation & Administration"
+        ],
         "summary": "List Audit Logs (Admin/Moderator)",
         "description": "Consulta el registro de auditoría de operaciones críticas (exclusivo para MODERATOR y SUPERADMIN).",
         "operationId": "list_audit_logs_api_v1_admin_audit_logs_get",
-        "security": [{ "HTTPBearer": [] }],
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
         "parameters": [
           {
             "name": "organization_id",
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Organization Id"
             }
           },
@@ -874,7 +1255,14 @@
             "in": "query",
             "required": false,
             "schema": {
-              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "title": "Action"
             }
           },
@@ -882,13 +1270,24 @@
             "name": "page",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "minimum": 1, "default": 1, "title": "Page" }
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
           },
           {
             "name": "page_size",
             "in": "query",
             "required": false,
-            "schema": { "type": "integer", "maximum": 100, "minimum": 1, "default": 20, "title": "Page Size" }
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Page Size"
+            }
           }
         ],
         "responses": {
@@ -896,9 +1295,1008 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/PaginatedResponse_AuditLogResponse_" }
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse_AuditLogResponse_"
+                }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/catalogs/species": {
+      "get": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "List Animal Species Catalog",
+        "description": "Lista el catálogo de especies activas (perros, gatos, conejos, etc.).",
+        "operationId": "list_species_api_v1_animals_catalogs_species_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpeciesResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Create Animal Species (Admin/Moderator)",
+        "description": "Añade una nueva especie al catálogo configurable.",
+        "operationId": "create_species_api_v1_animals_catalogs_species_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SpeciesCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpeciesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/catalogs/breeds": {
+      "get": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "List Animal Breeds Catalog",
+        "description": "Lista las razas activas, opcionalmente filtradas por especie.",
+        "operationId": "list_breeds_api_v1_animals_catalogs_breeds_get",
+        "parameters": [
+          {
+            "name": "species_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Species Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BreedResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Create Animal Breed (Admin/Moderator)",
+        "description": "Añade una raza asociada a una especie en el catálogo.",
+        "operationId": "create_breed_api_v1_animals_catalogs_breeds_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BreedCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BreedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/catalogs/traits": {
+      "get": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "List Animal Traits & Temperaments Catalog",
+        "description": "Lista el catálogo de características, temperamentos y necesidades especiales.",
+        "operationId": "list_traits_api_v1_animals_catalogs_traits_get",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/TraitCategory"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CatalogTraitResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Create Animal Catalog Trait (Admin/Moderator)",
+        "description": "Crea una nueva etiqueta de temperamento o característica en el catálogo.",
+        "operationId": "create_trait_api_v1_animals_catalogs_traits_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogTraitCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogTraitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals": {
+      "post": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Create Animal Profile",
+        "description": "Crea la ficha de un animal vinculada a una protectora (requiere rol EDITOR o superior en la protectora).",
+        "operationId": "create_animal_api_v1_animals_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnimalCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimalResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Search & List Animals",
+        "description": "Busca animales en adopción con filtros por especie, raza, tamaño, edad, compatibilidad, protectora y distancia en km.",
+        "operationId": "list_animals_api_v1_animals_get",
+        "parameters": [
+          {
+            "name": "species_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "breed_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "sex",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AnimalSex"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AnimalSize"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "age_category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AnimalAgeCategory"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AnimalStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "AVAILABLE"
+            }
+          },
+          {
+            "name": "organization_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "good_with_dogs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/CompatibilityLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "good_with_cats",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/CompatibilityLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "good_with_children",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/CompatibilityLevel"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "adapts_to_apartment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "is_urgent",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 120
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "radius_km",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse_AnimalResponse_"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/{animal_id}": {
+      "get": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Get Animal Details",
+        "description": "Obtiene la ficha completa de un animal (las fichas en estado DRAFT solo son accesibles para su protectora).",
+        "operationId": "get_animal_api_v1_animals__animal_id__get",
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimalResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Update Animal Profile",
+        "description": "Actualiza los datos, perfil, salud, compatibilidades o ubicación del animal (requiere rol EDITOR+ en su protectora).",
+        "operationId": "update_animal_api_v1_animals__animal_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnimalUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimalResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Delete Animal Profile",
+        "description": "Realiza la baja lógica de una ficha de animal (requiere rol MANAGER+ en su protectora).",
+        "operationId": "delete_animal_api_v1_animals__animal_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/v1/animals/{animal_id}/status": {
+      "post": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Transition Animal Status",
+        "description": "Cambia el estado del animal (DRAFT, AVAILABLE, RESERVED, ADOPTED, UNAVAILABLE) conservando su historial inmutable.",
+        "operationId": "transition_animal_status_api_v1_animals__animal_id__status_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnimalStatusTransitionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimalResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/{animal_id}/status-history": {
+      "get": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Get Animal Status History",
+        "description": "Devuelve el historial cronológico completo de cambios de estado del animal.",
+        "operationId": "list_animal_status_history_api_v1_animals__animal_id__status_history_get",
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AnimalStatusHistoryResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/{animal_id}/media": {
+      "post": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Add Animal Media",
+        "description": "Añade una imagen o vídeo a la galería del animal (requiere rol EDITOR+ en su protectora).",
+        "operationId": "add_animal_media_api_v1_animals__animal_id__media_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnimalMediaCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimalMediaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/animals/{animal_id}/media/{media_id}": {
+      "delete": {
+        "tags": [
+          "Animals & Adoption Catalog"
+        ],
+        "summary": "Delete Animal Media",
+        "description": "Elimina un elemento multimedia de la galería del animal (requiere rol EDITOR+ en su protectora).",
+        "operationId": "delete_animal_media_api_v1_animals__animal_id__media__media_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "animal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "media_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/v1/pets": {
+      "post": {
+        "tags": [
+          "User Pets"
+        ],
+        "summary": "Create User Pet",
+        "description": "Registra una mascota perteneciente al usuario autenticado (con vínculo opcional al animal adoptado).",
+        "operationId": "create_pet_api_v1_pets_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pets/my": {
+      "get": {
+        "tags": [
+          "User Pets"
+        ],
+        "summary": "List My Pets",
+        "description": "Lista las mascotas activas del usuario autenticado.",
+        "operationId": "list_my_pets_api_v1_pets_my_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PetResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pets/{pet_id}": {
+      "get": {
+        "tags": [
+          "User Pets"
+        ],
+        "summary": "Get Pet Details",
+        "description": "Obtiene el detalle de una mascota.",
+        "operationId": "get_pet_api_v1_pets__pet_id__get",
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "User Pets"
+        ],
+        "summary": "Update Pet",
+        "description": "Actualiza los datos de una mascota (exclusivo para su usuario propietario).",
+        "operationId": "update_pet_api_v1_pets__pet_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User Pets"
+        ],
+        "summary": "Delete Pet",
+        "description": "Realiza la baja lógica de una mascota (exclusivo para su usuario propietario).",
+        "operationId": "delete_pet_api_v1_pets__pet_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pet_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
           }
         }
       }
@@ -914,24 +2312,55 @@
     "schemas": {
       "HealthResponse": {
         "type": "object",
-        "required": ["status", "service", "version", "environment", "database"],
+        "required": [
+          "status",
+          "service",
+          "version",
+          "environment",
+          "database"
+        ],
         "properties": {
-          "status": { "type": "string", "title": "Status" },
-          "service": { "type": "string", "title": "Service" },
-          "version": { "type": "string", "title": "Version" },
-          "environment": { "type": "string", "title": "Environment" },
-          "database": { "type": "string", "title": "Database" }
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "service": {
+            "type": "string",
+            "title": "Service"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          },
+          "database": {
+            "type": "string",
+            "title": "Database"
+          }
         },
         "title": "HealthResponse"
       },
       "SystemRole": {
         "type": "string",
-        "enum": ["USER", "MODERATOR", "SUPERADMIN"],
+        "enum": [
+          "USER",
+          "MODERATOR",
+          "SUPERADMIN"
+        ],
         "title": "SystemRole"
       },
       "OrganizationRole": {
         "type": "string",
-        "enum": ["OWNER", "ADMIN", "MANAGER", "EDITOR", "MEMBER"],
+        "enum": [
+          "OWNER",
+          "ADMIN",
+          "MANAGER",
+          "EDITOR",
+          "MEMBER"
+        ],
         "title": "OrganizationRole"
       },
       "OrganizationType": {
@@ -950,399 +2379,1751 @@
       },
       "OrganizationVerificationState": {
         "type": "string",
-        "enum": ["UNVERIFIED", "PENDING", "VERIFIED", "REJECTED", "SUSPENDED"],
+        "enum": [
+          "UNVERIFIED",
+          "PENDING",
+          "VERIFIED",
+          "REJECTED",
+          "SUSPENDED"
+        ],
         "title": "OrganizationVerificationState"
       },
       "MemberStatus": {
         "type": "string",
-        "enum": ["INVITED", "ACTIVE", "SUSPENDED"],
+        "enum": [
+          "INVITED",
+          "ACTIVE",
+          "SUSPENDED"
+        ],
         "title": "MemberStatus"
       },
       "VerificationRequestStatus": {
         "type": "string",
-        "enum": ["PENDING", "UNDER_REVIEW", "APPROVED", "REJECTED", "MORE_INFO_REQUIRED"],
+        "enum": [
+          "PENDING",
+          "UNDER_REVIEW",
+          "APPROVED",
+          "REJECTED",
+          "MORE_INFO_REQUIRED"
+        ],
         "title": "VerificationRequestStatus"
       },
       "AddressCreate": {
         "type": "object",
-        "required": ["street_line_1", "city"],
+        "required": [
+          "street_line_1",
+          "city"
+        ],
         "properties": {
-          "label": { "anyOf": [{ "type": "string", "maxLength": 80 }, { "type": "null" }], "title": "Label" },
-          "street_line_1": { "type": "string", "minLength": 2, "maxLength": 255, "title": "Street Line 1" },
-          "street_line_2": { "anyOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }], "title": "Street Line 2" },
-          "city": { "type": "string", "minLength": 2, "maxLength": 120, "title": "City" },
-          "state_province": { "anyOf": [{ "type": "string", "maxLength": 120 }, { "type": "null" }], "title": "State Province" },
-          "postal_code": { "anyOf": [{ "type": "string", "maxLength": 24 }, { "type": "null" }], "title": "Postal Code" },
-          "country_code": { "type": "string", "minLength": 2, "maxLength": 2, "default": "ES", "title": "Country Code" },
-          "latitude": { "anyOf": [{ "type": "number", "minimum": -90.0, "maximum": 90.0 }, { "type": "null" }], "title": "Latitude" },
-          "longitude": { "anyOf": [{ "type": "number", "minimum": -180.0, "maximum": 180.0 }, { "type": "null" }], "title": "Longitude" },
-          "is_primary": { "type": "boolean", "default": false, "title": "Is Primary" }
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "street_line_1": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 255,
+            "title": "Street Line 1"
+          },
+          "street_line_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Street Line 2"
+          },
+          "city": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120,
+            "title": "City"
+          },
+          "state_province": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State Province"
+          },
+          "postal_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 24
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Postal Code"
+          },
+          "country_code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "default": "ES",
+            "title": "Country Code"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude"
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude"
+          },
+          "is_primary": {
+            "type": "boolean",
+            "default": false,
+            "title": "Is Primary"
+          }
         },
         "title": "AddressCreate"
       },
       "AddressResponse": {
         "type": "object",
-        "required": ["id", "street_line_1", "city", "country_code", "is_primary", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "street_line_1",
+          "city",
+          "country_code",
+          "is_primary",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "User Id" },
-          "organization_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Organization Id" },
-          "label": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Label" },
-          "street_line_1": { "type": "string", "title": "Street Line 1" },
-          "street_line_2": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Street Line 2" },
-          "city": { "type": "string", "title": "City" },
-          "state_province": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "State Province" },
-          "postal_code": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Postal Code" },
-          "country_code": { "type": "string", "title": "Country Code" },
-          "latitude": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Latitude" },
-          "longitude": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Longitude" },
-          "is_primary": { "type": "boolean", "title": "Is Primary" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "organization_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Id"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "street_line_1": {
+            "type": "string",
+            "title": "Street Line 1"
+          },
+          "street_line_2": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Street Line 2"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "state_province": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State Province"
+          },
+          "postal_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Postal Code"
+          },
+          "country_code": {
+            "type": "string",
+            "title": "Country Code"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude"
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude"
+          },
+          "is_primary": {
+            "type": "boolean",
+            "title": "Is Primary"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "AddressResponse"
       },
       "UserProfileResponse": {
         "type": "object",
-        "required": ["id", "is_public", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "is_public",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "username": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Username" },
-          "display_name": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Display Name" },
-          "bio": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Bio" },
-          "avatar_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Avatar Url" },
-          "phone": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Phone" },
-          "primary_address_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Primary Address Id" },
-          "is_public": { "type": "boolean", "title": "Is Public" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "bio": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bio"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          },
+          "primary_address_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Address Id"
+          },
+          "is_public": {
+            "type": "boolean",
+            "title": "Is Public"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "UserProfileResponse"
       },
       "UserProfileUpdate": {
         "type": "object",
         "properties": {
-          "username": { "anyOf": [{ "type": "string", "minLength": 3, "maxLength": 64 }, { "type": "null" }], "title": "Username" },
-          "display_name": { "anyOf": [{ "type": "string", "minLength": 1, "maxLength": 120 }, { "type": "null" }], "title": "Display Name" },
-          "bio": { "anyOf": [{ "type": "string", "maxLength": 1000 }, { "type": "null" }], "title": "Bio" },
-          "avatar_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Avatar Url" },
-          "phone": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Phone" },
-          "primary_address_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Primary Address Id" },
-          "is_public": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Is Public" },
-          "terms_accepted": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Terms Accepted" }
+          "username": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "bio": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bio"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          },
+          "primary_address_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Address Id"
+          },
+          "is_public": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Public"
+          },
+          "terms_accepted": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terms Accepted"
+          }
         },
         "title": "UserProfileUpdate"
       },
       "UserPreferenceResponse": {
         "type": "object",
-        "required": ["id", "language", "search_radius_km", "marketing_consent", "geolocation_consent", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "language",
+          "search_radius_km",
+          "marketing_consent",
+          "geolocation_consent",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "language": { "type": "string", "title": "Language" },
-          "search_radius_km": { "type": "integer", "title": "Search Radius Km" },
-          "marketing_consent": { "type": "boolean", "title": "Marketing Consent" },
-          "marketing_consent_at": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "title": "Marketing Consent At" },
-          "geolocation_consent": { "type": "boolean", "title": "Geolocation Consent" },
-          "extra_settings": { "type": "object", "additionalProperties": true, "title": "Extra Settings" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "language": {
+            "type": "string",
+            "title": "Language"
+          },
+          "search_radius_km": {
+            "type": "integer",
+            "title": "Search Radius Km"
+          },
+          "marketing_consent": {
+            "type": "boolean",
+            "title": "Marketing Consent"
+          },
+          "marketing_consent_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marketing Consent At"
+          },
+          "geolocation_consent": {
+            "type": "boolean",
+            "title": "Geolocation Consent"
+          },
+          "extra_settings": {
+            "type": "object",
+            "additionalProperties": true,
+            "title": "Extra Settings"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "UserPreferenceResponse"
       },
       "UserPreferenceUpdate": {
         "type": "object",
         "properties": {
-          "language": { "anyOf": [{ "type": "string", "enum": ["es", "en", "ca", "gl", "eu"] }, { "type": "null" }], "title": "Language" },
-          "search_radius_km": { "anyOf": [{ "type": "integer", "minimum": 1, "maximum": 1000 }, { "type": "null" }], "title": "Search Radius Km" },
-          "marketing_consent": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Marketing Consent" },
-          "geolocation_consent": { "anyOf": [{ "type": "boolean" }, { "type": "null" }], "title": "Geolocation Consent" },
-          "extra_settings": { "anyOf": [{ "type": "object", "additionalProperties": true }, { "type": "null" }], "title": "Extra Settings" }
+          "language": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "es",
+                  "en",
+                  "ca",
+                  "gl",
+                  "eu"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "search_radius_km": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Search Radius Km"
+          },
+          "marketing_consent": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marketing Consent"
+          },
+          "geolocation_consent": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Geolocation Consent"
+          },
+          "extra_settings": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extra Settings"
+          }
         },
         "title": "UserPreferenceUpdate"
       },
       "UserOrganizationMembershipBrief": {
         "type": "object",
-        "required": ["organization_id", "role", "status"],
+        "required": [
+          "organization_id",
+          "role",
+          "status"
+        ],
         "properties": {
-          "organization_id": { "type": "string", "format": "uuid", "title": "Organization Id" },
-          "role": { "$ref": "#/components/schemas/OrganizationRole" },
-          "status": { "type": "string", "title": "Status" }
+          "organization_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Organization Id"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrganizationRole"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          }
         },
         "title": "UserOrganizationMembershipBrief"
       },
       "UserMeResponse": {
         "type": "object",
-        "required": ["id", "auth_id", "email", "system_role", "is_active", "terms_accepted", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "auth_id",
+          "email",
+          "system_role",
+          "is_active",
+          "terms_accepted",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "auth_id": { "type": "string", "format": "uuid", "title": "Auth Id" },
-          "email": { "type": "string", "format": "email", "title": "Email" },
-          "system_role": { "$ref": "#/components/schemas/SystemRole" },
-          "is_active": { "type": "boolean", "title": "Is Active" },
-          "terms_accepted": { "type": "boolean", "title": "Terms Accepted" },
-          "terms_accepted_at": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "title": "Terms Accepted At" },
-          "profile": { "anyOf": [{ "$ref": "#/components/schemas/UserProfileResponse" }, { "type": "null" }] },
-          "preferences": { "anyOf": [{ "$ref": "#/components/schemas/UserPreferenceResponse" }, { "type": "null" }] },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "auth_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Auth Id"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "system_role": {
+            "$ref": "#/components/schemas/SystemRole"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "terms_accepted": {
+            "type": "boolean",
+            "title": "Terms Accepted"
+          },
+          "terms_accepted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terms Accepted At"
+          },
+          "profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserProfileResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferences": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserPreferenceResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "memberships": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/UserOrganizationMembershipBrief" },
+            "items": {
+              "$ref": "#/components/schemas/UserOrganizationMembershipBrief"
+            },
             "title": "Memberships"
           },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "UserMeResponse"
       },
       "UserPublicResponse": {
         "type": "object",
-        "required": ["id", "created_at"],
+        "required": [
+          "id",
+          "created_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "username": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Username" },
-          "display_name": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Display Name" },
-          "bio": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Bio" },
-          "avatar_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Avatar Url" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "bio": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bio"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar Url"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
         },
         "title": "UserPublicResponse"
       },
       "OrganizationCreate": {
         "type": "object",
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "properties": {
-          "name": { "type": "string", "minLength": 2, "maxLength": 160, "title": "Name" },
-          "slug": { "anyOf": [{ "type": "string", "minLength": 2, "maxLength": 180 }, { "type": "null" }], "title": "Slug" },
-          "org_type": { "$ref": "#/components/schemas/OrganizationType", "default": "SHELTER" },
-          "tax_id": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Tax Id" },
-          "description": { "anyOf": [{ "type": "string", "maxLength": 3000 }, { "type": "null" }], "title": "Description" },
-          "logo_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Logo Url" },
-          "cover_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Cover Url" },
-          "website_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Website Url" },
-          "contact_email": { "anyOf": [{ "type": "string", "format": "email" }, { "type": "null" }], "title": "Contact Email" },
-          "contact_phone": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Contact Phone" }
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 160,
+            "title": "Name"
+          },
+          "slug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 180
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Slug"
+          },
+          "org_type": {
+            "$ref": "#/components/schemas/OrganizationType",
+            "default": "SHELTER"
+          },
+          "tax_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax Id"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 3000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "logo_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Url"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          },
+          "website_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website Url"
+          },
+          "contact_email": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Email"
+          },
+          "contact_phone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone"
+          }
         },
         "title": "OrganizationCreate"
       },
       "OrganizationUpdate": {
         "type": "object",
         "properties": {
-          "name": { "anyOf": [{ "type": "string", "minLength": 2, "maxLength": 160 }, { "type": "null" }], "title": "Name" },
-          "org_type": { "anyOf": [{ "$ref": "#/components/schemas/OrganizationType" }, { "type": "null" }] },
-          "tax_id": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Tax Id" },
-          "description": { "anyOf": [{ "type": "string", "maxLength": 3000 }, { "type": "null" }], "title": "Description" },
-          "logo_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Logo Url" },
-          "cover_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Cover Url" },
-          "website_url": { "anyOf": [{ "type": "string", "maxLength": 512 }, { "type": "null" }], "title": "Website Url" },
-          "contact_email": { "anyOf": [{ "type": "string", "format": "email" }, { "type": "null" }], "title": "Contact Email" },
-          "contact_phone": { "anyOf": [{ "type": "string", "maxLength": 32 }, { "type": "null" }], "title": "Contact Phone" }
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 2,
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "org_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tax_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax Id"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 3000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "logo_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Url"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          },
+          "website_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website Url"
+          },
+          "contact_email": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Email"
+          },
+          "contact_phone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone"
+          }
         },
         "title": "OrganizationUpdate"
       },
       "OrganizationResponse": {
         "type": "object",
-        "required": ["id", "name", "slug", "org_type", "verification_status", "is_active", "created_by_user_id", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "org_type",
+          "verification_status",
+          "is_active",
+          "created_by_user_id",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "name": { "type": "string", "title": "Name" },
-          "slug": { "type": "string", "title": "Slug" },
-          "org_type": { "$ref": "#/components/schemas/OrganizationType" },
-          "tax_id": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Tax Id" },
-          "description": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Description" },
-          "logo_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Logo Url" },
-          "cover_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Cover Url" },
-          "website_url": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Website Url" },
-          "contact_email": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Contact Email" },
-          "contact_phone": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Contact Phone" },
-          "verification_status": { "$ref": "#/components/schemas/OrganizationVerificationState" },
-          "is_active": { "type": "boolean", "title": "Is Active" },
-          "created_by_user_id": { "type": "string", "format": "uuid", "title": "Created By User Id" },
-          "addresses": { "type": "array", "items": { "$ref": "#/components/schemas/AddressResponse" }, "title": "Addresses" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "org_type": {
+            "$ref": "#/components/schemas/OrganizationType"
+          },
+          "tax_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax Id"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "logo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Logo Url"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          },
+          "website_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website Url"
+          },
+          "contact_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Email"
+          },
+          "contact_phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone"
+          },
+          "verification_status": {
+            "$ref": "#/components/schemas/OrganizationVerificationState"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "created_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Created By User Id"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressResponse"
+            },
+            "title": "Addresses"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "OrganizationResponse"
       },
       "MyOrganizationMembershipResponse": {
         "type": "object",
-        "required": ["organization", "role", "status", "joined_at"],
+        "required": [
+          "organization",
+          "role",
+          "status",
+          "joined_at"
+        ],
         "properties": {
-          "organization": { "$ref": "#/components/schemas/OrganizationResponse" },
-          "role": { "$ref": "#/components/schemas/OrganizationRole" },
-          "status": { "$ref": "#/components/schemas/MemberStatus" },
-          "joined_at": { "type": "string", "format": "date-time", "title": "Joined At" }
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationResponse"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrganizationRole"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MemberStatus"
+          },
+          "joined_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Joined At"
+          }
         },
         "title": "MyOrganizationMembershipResponse"
       },
       "OrganizationMemberCreate": {
         "type": "object",
-        "required": ["user_id"],
+        "required": [
+          "user_id"
+        ],
         "properties": {
-          "user_id": { "type": "string", "format": "uuid", "title": "User Id" },
-          "role": { "$ref": "#/components/schemas/OrganizationRole", "default": "MEMBER" }
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrganizationRole",
+            "default": "MEMBER"
+          }
         },
         "title": "OrganizationMemberCreate"
       },
       "OrganizationMemberUpdate": {
         "type": "object",
         "properties": {
-          "role": { "anyOf": [{ "$ref": "#/components/schemas/OrganizationRole" }, { "type": "null" }] },
-          "status": { "anyOf": [{ "$ref": "#/components/schemas/MemberStatus" }, { "type": "null" }] }
+          "role": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationRole"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MemberStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
         },
         "title": "OrganizationMemberUpdate"
       },
       "OrganizationMemberResponse": {
         "type": "object",
-        "required": ["id", "organization_id", "user_id", "role", "status", "joined_at", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "organization_id",
+          "user_id",
+          "role",
+          "status",
+          "joined_at",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "organization_id": { "type": "string", "format": "uuid", "title": "Organization Id" },
-          "user_id": { "type": "string", "format": "uuid", "title": "User Id" },
-          "role": { "$ref": "#/components/schemas/OrganizationRole" },
-          "status": { "$ref": "#/components/schemas/MemberStatus" },
-          "invited_by_user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Invited By User Id" },
-          "joined_at": { "type": "string", "format": "date-time", "title": "Joined At" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Organization Id"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrganizationRole"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MemberStatus"
+          },
+          "invited_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Invited By User Id"
+          },
+          "joined_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Joined At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "OrganizationMemberResponse"
       },
       "VerificationDocumentItem": {
         "type": "object",
-        "required": ["file_path", "document_type"],
+        "required": [
+          "file_path",
+          "document_type"
+        ],
         "properties": {
-          "file_path": { "type": "string", "minLength": 3, "maxLength": 512, "title": "File Path" },
-          "document_type": { "type": "string", "minLength": 2, "maxLength": 64, "title": "Document Type" },
-          "description": { "anyOf": [{ "type": "string", "maxLength": 255 }, { "type": "null" }], "title": "Description" }
+          "file_path": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 512,
+            "title": "File Path"
+          },
+          "document_type": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "title": "Document Type"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
         },
         "title": "VerificationDocumentItem"
       },
       "OrganizationVerificationCreate": {
         "type": "object",
-        "required": ["legal_name", "tax_id"],
+        "required": [
+          "legal_name",
+          "tax_id"
+        ],
         "properties": {
-          "legal_name": { "type": "string", "minLength": 2, "maxLength": 200, "title": "Legal Name" },
-          "tax_id": { "type": "string", "minLength": 4, "maxLength": 32, "title": "Tax Id" },
-          "registry_number": { "anyOf": [{ "type": "string", "maxLength": 80 }, { "type": "null" }], "title": "Registry Number" },
+          "legal_name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 200,
+            "title": "Legal Name"
+          },
+          "tax_id": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 32,
+            "title": "Tax Id"
+          },
+          "registry_number": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Registry Number"
+          },
           "documents": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/VerificationDocumentItem" },
+            "items": {
+              "$ref": "#/components/schemas/VerificationDocumentItem"
+            },
             "title": "Documents"
           },
-          "notes": { "anyOf": [{ "type": "string", "maxLength": 2000 }, { "type": "null" }], "title": "Notes" }
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
         },
         "title": "OrganizationVerificationCreate"
       },
       "OrganizationVerificationReview": {
         "type": "object",
-        "required": ["status"],
+        "required": [
+          "status"
+        ],
         "properties": {
           "status": {
             "type": "string",
-            "enum": ["UNDER_REVIEW", "APPROVED", "REJECTED", "MORE_INFO_REQUIRED"],
+            "enum": [
+              "UNDER_REVIEW",
+              "APPROVED",
+              "REJECTED",
+              "MORE_INFO_REQUIRED"
+            ],
             "title": "Status"
           },
-          "notes": { "anyOf": [{ "type": "string", "maxLength": 2000 }, { "type": "null" }], "title": "Notes" },
-          "rejection_reason": { "anyOf": [{ "type": "string", "maxLength": 2000 }, { "type": "null" }], "title": "Rejection Reason" }
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "rejection_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rejection Reason"
+          }
         },
         "title": "OrganizationVerificationReview"
       },
       "OrganizationVerificationResponse": {
         "type": "object",
-        "required": ["id", "organization_id", "submitted_by_user_id", "status", "legal_name", "tax_id", "submitted_at", "created_at", "updated_at"],
+        "required": [
+          "id",
+          "organization_id",
+          "submitted_by_user_id",
+          "status",
+          "legal_name",
+          "tax_id",
+          "submitted_at",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "organization_id": { "type": "string", "format": "uuid", "title": "Organization Id" },
-          "submitted_by_user_id": { "type": "string", "format": "uuid", "title": "Submitted By User Id" },
-          "reviewed_by_user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Reviewed By User Id" },
-          "status": { "$ref": "#/components/schemas/VerificationRequestStatus" },
-          "legal_name": { "type": "string", "title": "Legal Name" },
-          "tax_id": { "type": "string", "title": "Tax Id" },
-          "registry_number": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Registry Number" },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Organization Id"
+          },
+          "submitted_by_user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submitted By User Id"
+          },
+          "reviewed_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reviewed By User Id"
+          },
+          "status": {
+            "$ref": "#/components/schemas/VerificationRequestStatus"
+          },
+          "legal_name": {
+            "type": "string",
+            "title": "Legal Name"
+          },
+          "tax_id": {
+            "type": "string",
+            "title": "Tax Id"
+          },
+          "registry_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Registry Number"
+          },
           "documents": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/VerificationDocumentItem" },
+            "items": {
+              "$ref": "#/components/schemas/VerificationDocumentItem"
+            },
             "title": "Documents"
           },
-          "notes": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Notes" },
-          "rejection_reason": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Rejection Reason" },
-          "submitted_at": { "type": "string", "format": "date-time", "title": "Submitted At" },
-          "reviewed_at": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }], "title": "Reviewed At" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" },
-          "updated_at": { "type": "string", "format": "date-time", "title": "Updated At" }
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "rejection_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rejection Reason"
+          },
+          "submitted_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Submitted At"
+          },
+          "reviewed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reviewed At"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
         },
         "title": "OrganizationVerificationResponse"
       },
       "AuditLogResponse": {
         "type": "object",
-        "required": ["id", "action", "target_type", "created_at"],
+        "required": [
+          "id",
+          "action",
+          "target_type",
+          "created_at"
+        ],
         "properties": {
-          "id": { "type": "string", "format": "uuid", "title": "Id" },
-          "actor_user_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Actor User Id" },
-          "organization_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Organization Id" },
-          "action": { "type": "string", "title": "Action" },
-          "target_type": { "type": "string", "title": "Target Type" },
-          "target_id": { "anyOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }], "title": "Target Id" },
-          "metadata": { "type": "object", "additionalProperties": true, "title": "Metadata" },
-          "created_at": { "type": "string", "format": "date-time", "title": "Created At" }
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "actor_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor User Id"
+          },
+          "organization_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Id"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "target_type": {
+            "type": "string",
+            "title": "Target Type"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "title": "Metadata"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
         },
         "title": "AuditLogResponse"
       },
       "PaginatedResponse_OrganizationResponse_": {
         "type": "object",
-        "required": ["items", "total", "page", "page_size", "total_pages"],
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "total_pages"
+        ],
         "properties": {
           "items": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/OrganizationResponse" }
+            "items": {
+              "$ref": "#/components/schemas/OrganizationResponse"
+            }
           },
-          "total": { "type": "integer", "title": "Total" },
-          "page": { "type": "integer", "title": "Page" },
-          "page_size": { "type": "integer", "title": "Page Size" },
-          "total_pages": { "type": "integer", "title": "Total Pages" }
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          }
         },
         "title": "PaginatedResponse[OrganizationResponse]"
       },
       "PaginatedResponse_OrganizationVerificationResponse_": {
         "type": "object",
-        "required": ["items", "total", "page", "page_size", "total_pages"],
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "total_pages"
+        ],
         "properties": {
           "items": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/OrganizationVerificationResponse" }
+            "items": {
+              "$ref": "#/components/schemas/OrganizationVerificationResponse"
+            }
           },
-          "total": { "type": "integer", "title": "Total" },
-          "page": { "type": "integer", "title": "Page" },
-          "page_size": { "type": "integer", "title": "Page Size" },
-          "total_pages": { "type": "integer", "title": "Total Pages" }
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          }
         },
         "title": "PaginatedResponse[OrganizationVerificationResponse]"
       },
       "PaginatedResponse_AuditLogResponse_": {
         "type": "object",
-        "required": ["items", "total", "page", "page_size", "total_pages"],
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "total_pages"
+        ],
         "properties": {
           "items": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/AuditLogResponse" }
+            "items": {
+              "$ref": "#/components/schemas/AuditLogResponse"
+            }
           },
-          "total": { "type": "integer", "title": "Total" },
-          "page": { "type": "integer", "title": "Page" },
-          "page_size": { "type": "integer", "title": "Page Size" },
-          "total_pages": { "type": "integer", "title": "Total Pages" }
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          }
         },
         "title": "PaginatedResponse[AuditLogResponse]"
       },
       "ValidationError": {
         "type": "object",
-        "required": ["loc", "msg", "type"],
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
         "properties": {
           "loc": {
             "type": "array",
-            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
             "title": "Location"
           },
-          "msg": { "type": "string", "title": "Message" },
-          "type": { "type": "string", "title": "Error Type" }
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
         },
         "title": "ValidationError"
       },
@@ -1351,13 +4132,1807 @@
         "properties": {
           "detail": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
             "title": "Detail"
           }
         },
         "title": "HTTPValidationError"
+      },
+      "AnimalStatus": {
+        "type": "string",
+        "enum": [
+          "DRAFT",
+          "AVAILABLE",
+          "RESERVED",
+          "ADOPTED",
+          "UNAVAILABLE"
+        ],
+        "title": "AnimalStatus"
+      },
+      "AnimalSex": {
+        "type": "string",
+        "enum": [
+          "MALE",
+          "FEMALE",
+          "UNKNOWN"
+        ],
+        "title": "AnimalSex"
+      },
+      "AnimalSize": {
+        "type": "string",
+        "enum": [
+          "TOY",
+          "SMALL",
+          "MEDIUM",
+          "LARGE",
+          "GIANT"
+        ],
+        "title": "AnimalSize"
+      },
+      "AnimalAgeCategory": {
+        "type": "string",
+        "enum": [
+          "PUPPY",
+          "YOUNG",
+          "ADULT",
+          "SENIOR"
+        ],
+        "title": "AnimalAgeCategory"
+      },
+      "EnergyLevel": {
+        "type": "string",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH"
+        ],
+        "title": "EnergyLevel"
+      },
+      "ExperienceRequired": {
+        "type": "string",
+        "enum": [
+          "NONE",
+          "BEGINNER",
+          "INTERMEDIATE",
+          "EXPERIENCED"
+        ],
+        "title": "ExperienceRequired"
+      },
+      "CompatibilityLevel": {
+        "type": "string",
+        "enum": [
+          "YES",
+          "NO",
+          "UNKNOWN"
+        ],
+        "title": "CompatibilityLevel"
+      },
+      "CustodyType": {
+        "type": "string",
+        "enum": [
+          "SHELTER_FACILITY",
+          "FOSTER_HOME"
+        ],
+        "title": "CustodyType"
+      },
+      "AnimalMediaType": {
+        "type": "string",
+        "enum": [
+          "IMAGE",
+          "VIDEO"
+        ],
+        "title": "AnimalMediaType"
+      },
+      "TraitCategory": {
+        "type": "string",
+        "enum": [
+          "TEMPERAMENT",
+          "CHARACTERISTIC",
+          "SPECIAL_NEED"
+        ],
+        "title": "TraitCategory"
+      },
+      "SpeciesCreate": {
+        "type": "object",
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 32
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 80
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "title": "SpeciesCreate"
+      },
+      "SpeciesResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "code",
+          "name",
+          "is_active",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "SpeciesResponse"
+      },
+      "BreedCreate": {
+        "type": "object",
+        "required": [
+          "species_id",
+          "name"
+        ],
+        "properties": {
+          "species_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "default_size": {
+            "$ref": "#/components/schemas/AnimalSize",
+            "default": "MEDIUM"
+          },
+          "is_ppp": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "title": "BreedCreate"
+      },
+      "BreedResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "species_id",
+          "name",
+          "default_size",
+          "is_ppp",
+          "is_active",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "species_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "default_size": {
+            "$ref": "#/components/schemas/AnimalSize"
+          },
+          "is_ppp": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "BreedResponse"
+      },
+      "CatalogTraitCreate": {
+        "type": "object",
+        "required": [
+          "code",
+          "label"
+        ],
+        "properties": {
+          "category": {
+            "$ref": "#/components/schemas/TraitCategory",
+            "default": "TEMPERAMENT"
+          },
+          "code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64
+          },
+          "label": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "title": "CatalogTraitCreate"
+      },
+      "CatalogTraitResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "code",
+          "label",
+          "is_active",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "category": {
+            "$ref": "#/components/schemas/TraitCategory"
+          },
+          "code": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "CatalogTraitResponse"
+      },
+      "AnimalProfileInput": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "story": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 5000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "energy_level": {
+            "$ref": "#/components/schemas/EnergyLevel",
+            "default": "MEDIUM"
+          },
+          "experience_required": {
+            "$ref": "#/components/schemas/ExperienceRequired",
+            "default": "NONE"
+          },
+          "max_hours_alone": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 24
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "adoption_fee_cents": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "trait_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "title": "AnimalProfileInput"
+      },
+      "AnimalProfileResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "energy_level",
+          "experience_required",
+          "adoption_fee_cents"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "story": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "energy_level": {
+            "$ref": "#/components/schemas/EnergyLevel"
+          },
+          "experience_required": {
+            "$ref": "#/components/schemas/ExperienceRequired"
+          },
+          "max_hours_alone": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "adoption_fee_cents": {
+            "type": "integer"
+          },
+          "trait_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "title": "AnimalProfileResponse"
+      },
+      "AnimalHealthInput": {
+        "type": "object",
+        "properties": {
+          "is_vaccinated": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_dewormed": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_sterilized": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_microchipped": {
+            "type": "boolean",
+            "default": false
+          },
+          "requires_ppp_license": {
+            "type": "boolean",
+            "default": false
+          },
+          "has_special_needs": {
+            "type": "boolean",
+            "default": false
+          },
+          "has_chronic_treatment": {
+            "type": "boolean",
+            "default": false
+          },
+          "health_notes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 3000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "AnimalHealthInput"
+      },
+      "AnimalHealthResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "is_vaccinated",
+          "is_dewormed",
+          "is_sterilized",
+          "is_microchipped",
+          "requires_ppp_license",
+          "has_special_needs",
+          "has_chronic_treatment"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "is_vaccinated": {
+            "type": "boolean"
+          },
+          "is_dewormed": {
+            "type": "boolean"
+          },
+          "is_sterilized": {
+            "type": "boolean"
+          },
+          "is_microchipped": {
+            "type": "boolean"
+          },
+          "requires_ppp_license": {
+            "type": "boolean"
+          },
+          "has_special_needs": {
+            "type": "boolean"
+          },
+          "has_chronic_treatment": {
+            "type": "boolean"
+          },
+          "health_notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "AnimalHealthResponse"
+      },
+      "AnimalCompatibilityInput": {
+        "type": "object",
+        "properties": {
+          "good_with_dogs": {
+            "$ref": "#/components/schemas/CompatibilityLevel",
+            "default": "UNKNOWN"
+          },
+          "good_with_cats": {
+            "$ref": "#/components/schemas/CompatibilityLevel",
+            "default": "UNKNOWN"
+          },
+          "good_with_children": {
+            "$ref": "#/components/schemas/CompatibilityLevel",
+            "default": "UNKNOWN"
+          },
+          "adapts_to_apartment": {
+            "type": "boolean",
+            "default": true
+          },
+          "needs_garden": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "title": "AnimalCompatibilityInput"
+      },
+      "AnimalCompatibilityResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "good_with_dogs",
+          "good_with_cats",
+          "good_with_children",
+          "adapts_to_apartment",
+          "needs_garden"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "good_with_dogs": {
+            "$ref": "#/components/schemas/CompatibilityLevel"
+          },
+          "good_with_cats": {
+            "$ref": "#/components/schemas/CompatibilityLevel"
+          },
+          "good_with_children": {
+            "$ref": "#/components/schemas/CompatibilityLevel"
+          },
+          "adapts_to_apartment": {
+            "type": "boolean"
+          },
+          "needs_garden": {
+            "type": "boolean"
+          }
+        },
+        "title": "AnimalCompatibilityResponse"
+      },
+      "AnimalLocationInput": {
+        "type": "object",
+        "required": [
+          "city"
+        ],
+        "properties": {
+          "city": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "state_province": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "postal_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 24
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "country_code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "default": "ES"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "AnimalLocationInput"
+      },
+      "AnimalLocationResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "city",
+          "country_code"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state_province": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "postal_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "AnimalLocationResponse"
+      },
+      "ShelterAnimalResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "organization_id",
+          "animal_id",
+          "custody_type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "animal_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "internal_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "custody_type": {
+            "$ref": "#/components/schemas/CustodyType"
+          },
+          "intake_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "assigned_member_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "adopted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "adopted_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "ShelterAnimalResponse"
+      },
+      "AnimalMediaCreate": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "media_type": {
+            "$ref": "#/components/schemas/AnimalMediaType",
+            "default": "IMAGE"
+          },
+          "url": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 512
+          },
+          "storage_path": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "display_order": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "is_cover": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "title": "AnimalMediaCreate"
+      },
+      "AnimalMediaResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "animal_id",
+          "media_type",
+          "url",
+          "display_order",
+          "is_cover",
+          "created_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "animal_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "media_type": {
+            "$ref": "#/components/schemas/AnimalMediaType"
+          },
+          "url": {
+            "type": "string"
+          },
+          "storage_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "display_order": {
+            "type": "integer"
+          },
+          "is_cover": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "AnimalMediaResponse"
+      },
+      "AnimalStatusHistoryResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "animal_id",
+          "to_status",
+          "created_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "animal_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "from_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "to_status": {
+            "$ref": "#/components/schemas/AnimalStatus"
+          },
+          "changed_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "AnimalStatusHistoryResponse"
+      },
+      "AnimalStatusTransitionInput": {
+        "type": "object",
+        "required": [
+          "to_status"
+        ],
+        "properties": {
+          "to_status": {
+            "$ref": "#/components/schemas/AnimalStatus"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "adopted_by_user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "AnimalStatusTransitionInput"
+      },
+      "AnimalCreate": {
+        "type": "object",
+        "required": [
+          "organization_id",
+          "name",
+          "species_id",
+          "location"
+        ],
+        "properties": {
+          "organization_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "species_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "breed_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_custom": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sex": {
+            "$ref": "#/components/schemas/AnimalSex",
+            "default": "UNKNOWN"
+          },
+          "size": {
+            "$ref": "#/components/schemas/AnimalSize",
+            "default": "MEDIUM"
+          },
+          "age_category": {
+            "$ref": "#/components/schemas/AnimalAgeCategory",
+            "default": "ADULT"
+          },
+          "birth_date_estimated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weight_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnimalStatus",
+            "default": "DRAFT"
+          },
+          "is_urgent": {
+            "type": "boolean",
+            "default": false
+          },
+          "internal_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "custody_type": {
+            "$ref": "#/components/schemas/CustodyType",
+            "default": "SHELTER_FACILITY"
+          },
+          "intake_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "profile": {
+            "$ref": "#/components/schemas/AnimalProfileInput"
+          },
+          "health": {
+            "$ref": "#/components/schemas/AnimalHealthInput"
+          },
+          "compatibilities": {
+            "$ref": "#/components/schemas/AnimalCompatibilityInput"
+          },
+          "location": {
+            "$ref": "#/components/schemas/AnimalLocationInput"
+          }
+        },
+        "title": "AnimalCreate"
+      },
+      "AnimalUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_custom": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sex": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalSex"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalSize"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "age_category": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalAgeCategory"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "birth_date_estimated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weight_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_urgent": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "internal_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "custody_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CustodyType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "intake_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalProfileInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "health": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalHealthInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "compatibilities": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalCompatibilityInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalLocationInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "AnimalUpdate"
+      },
+      "AnimalResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "species_id",
+          "sex",
+          "size",
+          "age_category",
+          "status",
+          "is_urgent",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "species_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "breed_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_custom": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sex": {
+            "$ref": "#/components/schemas/AnimalSex"
+          },
+          "size": {
+            "$ref": "#/components/schemas/AnimalSize"
+          },
+          "age_category": {
+            "$ref": "#/components/schemas/AnimalAgeCategory"
+          },
+          "birth_date_estimated": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weight_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnimalStatus"
+          },
+          "is_urgent": {
+            "type": "boolean"
+          },
+          "shelter_record": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ShelterAnimalResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalProfileResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "health": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalHealthResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "compatibilities": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalCompatibilityResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalLocationResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnimalMediaResponse"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "AnimalResponse"
+      },
+      "PaginatedResponse_AnimalResponse_": {
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "total_pages"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnimalResponse"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "total_pages": {
+            "type": "integer"
+          }
+        },
+        "title": "PaginatedResponse[AnimalResponse]"
+      },
+      "PetCreate": {
+        "type": "object",
+        "required": [
+          "name",
+          "species_id"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "species_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "breed_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_custom": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "origin_animal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sex": {
+            "$ref": "#/components/schemas/AnimalSex",
+            "default": "UNKNOWN"
+          },
+          "size": {
+            "$ref": "#/components/schemas/AnimalSize",
+            "default": "MEDIUM"
+          },
+          "birth_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weight_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_sterilized": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_microchipped": {
+            "type": "boolean",
+            "default": false
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "PetCreate"
+      },
+      "PetUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_custom": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sex": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalSex"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnimalSize"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "birth_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weight_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_sterilized": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_microchipped": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "PetUpdate"
+      },
+      "PetResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "owner_user_id",
+          "name",
+          "species_id",
+          "sex",
+          "size",
+          "is_sterilized",
+          "is_microchipped",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "owner_user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "origin_animal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "species_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "breed_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "breed_custom": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sex": {
+            "$ref": "#/components/schemas/AnimalSex"
+          },
+          "size": {
+            "$ref": "#/components/schemas/AnimalSize"
+          },
+          "birth_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weight_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "is_sterilized": {
+            "type": "boolean"
+          },
+          "is_microchipped": {
+            "type": "boolean"
+          },
+          "avatar_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "PetResponse"
       }
     }
   }
 }
-

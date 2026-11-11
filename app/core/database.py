@@ -36,11 +36,20 @@ def get_engine_args(url: str) -> dict[str, Any]:
 
 
 def normalize_database_url(url: str) -> str:
-    """Ensures asyncpg driver is specified for PostgreSQL URLs."""
+    """Ensures asyncpg driver is specified and strips query params handled via connect_args."""
+    url = url.strip()
     if url.startswith("postgres://"):
-        return url.replace("postgres://", "postgresql+asyncpg://", 1)
-    if url.startswith("postgresql://") and not url.startswith("postgresql+"):
-        return url.replace("postgresql://", "postgresql+asyncpg://", 1)
+        url = url.replace("postgres://", "postgresql+asyncpg://", 1)
+    elif url.startswith("postgresql://") and not url.startswith("postgresql+"):
+        url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+
+    for param in (
+        "?prepared_statement_cache_size=0",
+        "&prepared_statement_cache_size=0",
+        "%3Fprepared_statement_cache_size=0",
+        "%3fprepared_statement_cache_size=0",
+    ):
+        url = url.replace(param, "")
     return url
 
 
